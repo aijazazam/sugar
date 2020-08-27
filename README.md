@@ -3,6 +3,7 @@ IMDB architecture
 
 Required Installations:
 -------------------------
+*. Please go through "IMDB Architecture Doccument.docx" in /docs folder to get complete overview of the architecture.
 1. Please setup the GOPATH and GOBIN folders to this source code folder like in my system its GOPATH is "/home/think/sugar/go" and GOBIN is "/home/think/sugar/go/bin"
 2. Install MariaDB with root password as "sugarbox". The mariaDB backup (imdb.sql) is stored in "data" folder. Please install mariaDB and import "imdb.sql"
 3. Install Kafka and create topic TOPIC-MOVIE and TOPIC-AUTHENTICATION, using below script:
