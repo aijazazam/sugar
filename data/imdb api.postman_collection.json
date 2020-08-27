@@ -1,0 +1,349 @@
+{
+	"info": {
+		"_postman_id": "875e5b73-1416-462c-a541-0e02da7b5798",
+		"name": "imdb api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://localhost:8000/useraction",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVBdCI6MTU5ODQ3MTA5NCwiaXNBZG1pbiI6dHJ1ZSwibG9naW5BdCI6MTU5ODQ2NzQ5NCwidXNlcm5hbWUiOiJhZG1pbiJ9.cb_HOYnMPSH0I70pGmKpTya8TsqU0cJFe-ZJSGtBK00",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:8000/useraction",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"useraction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8000/add/movie",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVBdCI6MTU5ODQ3MTA5NCwiaXNBZG1pbiI6dHJ1ZSwibG9naW5BdCI6MTU5ODQ2NzQ5NCwidXNlcm5hbWUiOiJhZG1pbiJ9.cb_HOYnMPSH0I70pGmKpTya8TsqU0cJFe-ZJSGtBK00",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Name\": \"Baaghi 126\",\n\t\"Genere\": \"Action, Romance\",\n\t\"Description\": \"Cool Tiger shroff movie\",\n\t\"Director\": \"Ahmed Khan\",\n\t\"Actors\": \"Tiger Shroff\",\n\t\"Year\": 2020,\n\t\"Duration\": 120,\n\t\"Rating\": 10.0,\n\t\"Votes\": 48790,\n\t\"Revenue\": 438\n}"
+				},
+				"url": {
+					"raw": "https://localhost:8000/add/movie",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"add",
+						"movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8000/add/rate",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"MovieId\": 1000,\n\t\"Rating\": 7.7\n}"
+				},
+				"url": {
+					"raw": "https://localhost:8000/add/rate",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"add",
+						"rate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8000/add/comment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVBdCI6MTU5ODQ2MDg0MSwiaXNBZG1pbiI6ZmFsc2UsImxvZ2luQXQiOjE1OTg0NTcyNDEsInVzZXJuYW1lIjoic3VnYXIifQ.LiyhEqvRqTdTw84VGzQDo3YM9FERqR6GpL_v9jPPdu4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"movieId\": 1000,\n\t\"comment\": \"Hello world\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:8000/add/comment",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"add",
+						"comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8000/login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"sugar\",\n\t\"password\": \"sugarbox\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:8000/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8000/login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVBdCI6MTU5ODQ2MDg0MSwiaXNBZG1pbiI6ZmFsc2UsImxvZ2luQXQiOjE1OTg0NTcyNDEsInVzZXJuYW1lIjoic3VnYXIifQ.LiyhEqvRqTdTw84VGzQDo3YM9FERqR6GpL_v9jPPdu4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"adminpassword\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:8000/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8000/home",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:8000/home",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"home"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8000/search?q=Prometheus",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:8000/search?q=Prometheus",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Prometheus"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8000/search?q=gone",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:8000/search?q=gone",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "gone"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

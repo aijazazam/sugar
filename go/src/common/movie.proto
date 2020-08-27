@@ -1,0 +1,18 @@
+syntax = "proto3";
+  
+package common;
+
+message Movie {
+	uint32	MovieId				= 1;
+	string	Name					= 2;
+	string	Genere				= 3;
+	string	Description		= 4;
+	string	Director			= 5;
+	string	Actors				= 6;
+	uint32	Year					= 7;
+	uint32	Duration			= 8;
+	float		Rating				= 9;
+	uint32	Votes					= 10;
+	float		Revenue				= 11;
+}
+

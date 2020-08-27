@@ -1,0 +1,6 @@
+package common
+
+const (
+  TOPIC_MOVIE = "TOPIC-MOVIE"
+  TOPIC_AUTHENTICATION = "TOPIC-AUTHENTICATION"
+)
