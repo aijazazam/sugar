@@ -27,7 +27,8 @@ func main() {
 		TLSConfig:    tlsConfig(),
 	}
 
-	go kafka.GoConsumer(0)
+	go kafka.GoMovieConsumer(0)
+  go kafka.GoRatingConsumer(0)
 
 	http.HandleFunc("/home", handler.Home)
 

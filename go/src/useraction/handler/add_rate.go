@@ -5,6 +5,7 @@ import (
 	//"io/ioutil"
 	"encoding/json"
 
+	kafka "useraction/kafka"
 	sql "useraction/db"
 )
 
@@ -32,8 +33,11 @@ func AddRates(w http.ResponseWriter, r *http.Request) {
 
 	db.AddRate( rate )
 
-	// Once a logged in used rates a movie that should effect the overall avg movie rating, but since we don't have the data of all users who rated a movie in pre-populated data,
-	// Calculating the updated avg movie rating becomes difficult, So for simplicity we avoid updating the avg movie rating even if we hit our "/rate" api.
+	avgRating := db.GetAvgMovieRating( rate.MovieId )
+
+	db.UpdateMovieRating( avgRating )
+
+	kafka.SendAvgRating <- avgRating
 
 	return
 }

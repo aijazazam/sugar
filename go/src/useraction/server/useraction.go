@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"crypto/tls"
 
+	kafka "useraction/kafka"
 	"useraction/handler"
 )
 
@@ -19,6 +20,9 @@ const (
 
 // http://www.inanzzz.com/index.php/post/9ats/http2-and-tls-client-and-server-example-with-golang
 func main() {
+
+	go kafka.GoProducer()
+
 	server := &http.Server{
 		Addr:         ":8003",
 		ReadTimeout:  5 * time.Second,
