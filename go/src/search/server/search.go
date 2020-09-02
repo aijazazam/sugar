@@ -11,6 +11,8 @@ import (
 
 	"search/kafka"
 	"search/handler"
+
+	"search/cache"
 )
 
 const (
@@ -28,6 +30,8 @@ func main() {
 
 	go kafka.GoMovieConsumer(0)
 	go kafka.GoRatingConsumer(0)
+
+	go cache.GoSearchEngine()
 
 	http.HandleFunc("/search", handler.Search)
 

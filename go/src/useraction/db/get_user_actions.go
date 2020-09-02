@@ -20,7 +20,7 @@ func (db *DB) GetUserActions( tUserName string ) []Action {
 
 	//query := fmt.Sprintf( "SELECT MovieId, UserName, Rating, Comment FROM Action WHERE UserName='%s'", tUserName )
 
-	results, err := sqldb.Query( "SELECT MovieId, UserName, Rating, Comment FROM Action WHERE UserName=?", tUserName )
+	results, err := sqldb.Query( `SELECT MovieId, UserName, Rating, IFNULL(Comment, "") FROM Action WHERE UserName=?`, tUserName )
 	if err != nil {
 		panic( err )
 	}

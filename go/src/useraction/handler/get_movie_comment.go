@@ -19,6 +19,10 @@ func GetMovieComments(w http.ResponseWriter, r *http.Request) {
     return
 	}
 
+	if len(movieIds[0] == 0 {
+		return
+	}
+
 	db := sql.GetDB()
 	movie_comments := db.GetMovieComments( movieIds[0] )
 

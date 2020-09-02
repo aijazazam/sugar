@@ -2,7 +2,7 @@
 .PHONY: clean
 
 all:
-	go install server/*.go
+	go install -a server/*.go
 
 clean:
 	rm $$GOBIN/apigateway 2> /dev/null

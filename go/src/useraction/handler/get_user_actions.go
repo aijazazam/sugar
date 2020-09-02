@@ -24,6 +24,11 @@ func GetUserActions(w http.ResponseWriter, r *http.Request) {
 	db := sql.GetDB()
 	user_actions := db.GetUserActions( username[0] )
 
+	if len(user_actions) == 0 {
+		io.WriteString( w, `{"Status":"Empty"}`)
+		return
+	}
+
 	user_action_map := make( map[uint32]sql.Action )
 	movieId_list := make( []uint32, 0 )
 
@@ -51,8 +56,4 @@ func GetUserActions(w http.ResponseWriter, r *http.Request) {
 
 	return
 }
-
-func appendComments( ) {
-}
-
 

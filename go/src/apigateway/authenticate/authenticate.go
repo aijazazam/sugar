@@ -1,4 +1,4 @@
-package db
+package authenticate
 
 import (
 	"fmt"
@@ -59,12 +59,12 @@ func Authentication( tUserName, tPassword string ) ( IsAdmin bool, IsAuthenticat
 	return tCredential.IsAdmin, true
 }
 
-/*func GeneratePasswordHashSalt( tPassword string ) (tPasswordHash uint64, tPasswordSalt string) {
+func GeneratePasswordHashSalt( tPassword string ) (tPasswordHash uint64, tPasswordSalt string) {
 
 	// Generate Random String of 10 charecters, this is our Salt specific to given User
 	tPasswordSalt = randString(10)
 	tPasswordHash = siphash.Hash( HASH_KEY_1, HASH_KEY_2, []byte(tPassword + tPasswordSalt) )
 
 	return
-}*/
+}
 

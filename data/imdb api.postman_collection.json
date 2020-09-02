@@ -344,6 +344,40 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "https://localhost:8000/create/user",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"user 17\",\n\t\"password\": \"password 17\",\n\t\"isadmin\": false\n}"
+				},
+				"url": {
+					"raw": "https://localhost:8000/create/user",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"create",
+						"user"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

@@ -11,7 +11,7 @@ func (db *DB) GetMovieComments( tMovies string ) []Comment {
 
 	sqldb := db.sqldb
 
-	query := fmt.Sprintf( "SELECT MovieId, UserName, Comment FROM Action WHERE MovieId in (%s)", tMovies )
+	query := fmt.Sprintf( "SELECT MovieId, UserName, Comment FROM Action WHERE Comment IS NOT NULL AND MovieId in (%s);", tMovies )
 
 	results, err := sqldb.Query( query )
 	if err != nil {

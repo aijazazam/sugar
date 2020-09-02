@@ -2,7 +2,7 @@
 .PHONY: clean
 
 all:
-	go install server/*.go
+	go install -a server/*.go
 
 clean:
 	rm $$GOBIN/search 2> /dev/null

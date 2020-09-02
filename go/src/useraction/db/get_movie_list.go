@@ -20,6 +20,7 @@ type Movie struct {
   Rating        float32
   Votes         uint32
   Revenue       float32
+
 	UserRating		float32
 	UserComment		string
 }
@@ -29,10 +30,15 @@ func (db *DB) GetMoviesList( tMovieIds []uint32 ) []Movie {
 	tResult	:= make( []Movie, 0 )
 	sqldb		:= db.sqldb
 
+	if len(tMovieIds) == 0 {
+		return tResult
+	}
+
 	in := strings.Trim(strings.Join(strings.Split(fmt.Sprint(tMovieIds), " "), ","), "[]")
 
-	query := fmt.Sprintf( `SELECT MovieId, Name, Genere, Description, Director, Actors, Year, Duration, Rating, Votes, Revenue
-												 FROM Movie WHERE MovieId in (%s)`, in )
+	query := fmt.Sprintf( `SELECT MovieId, Name, Genere, Description, Director, Actors, Year, Duration, Rating, Votes, Revenue FROM Movie WHERE MovieId in (%s)`, in )
+
+fmt.Println(query)
 
 	row, err := sqldb.Query( query )
 

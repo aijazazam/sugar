@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	"crypto/tls"
 
+	"apigateway/bloom"
 	"apigateway/handler"
 )
 
@@ -26,7 +27,10 @@ func main() {
 		TLSConfig:    tlsConfig(),
 	}
 
+	go bloom.GoBloom()
+
 	// apigateway microservice
+	http.HandleFunc("/create/user", handler.CreateUsers)
 	http.HandleFunc("/login", handler.Login)
 
 	// search microservice

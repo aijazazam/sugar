@@ -14,16 +14,14 @@ type Bloom struct {
 }
 
 var (
-	AddBloom   chan Bloom
+	AddBloom   chan com.Credential
   CheckBloom chan Bloom
 )
 
 func init() {
 
-	AddBloom     = make( chan Bloom, 100 )
+	AddBloom     = make( chan com.Credential, 100 )
   CheckBloom   = make( chan Bloom, 100 )
-
-	go GoBloom()
 }
 
 func GoBloom() {
@@ -42,13 +40,11 @@ func GoBloom() {
 		fmt.Println( "Bloom added ", tCredential.UserName )
 	}
 
-	//db.GetCredentials()
-
 	for {
 		select {
 			case tAdd := <-AddBloom: {
-				sbf.Add( []byte( tAdd.Cred.UserName) )
-				fmt.Printf( "%v added to Bloom", tAdd.Cred.UserName )
+				sbf.Add( []byte( tAdd.UserName) )
+				fmt.Printf( "%v added to Bloom", tAdd.UserName )
 			}
 			case tCheck := <-CheckBloom: {
 				tCheck.Present = sbf.Test( []byte(tCheck.Cred.UserName) )

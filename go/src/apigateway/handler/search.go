@@ -20,14 +20,16 @@ func Search(w http.ResponseWriter, r *http.Request) {
 
 	comments_bytes := comments_backend( movieIds )
 
-	var comments_body []interface{}
-  if err := json.Unmarshal(comments_bytes, &comments_body); err != nil {
-    panic(err)
-  }
+	if comments_bytes != nil {
+		var comments_body []interface{}
+		if err := json.Unmarshal(comments_bytes, &comments_body); err != nil {
+			panic(err)
+		}
 
-	mComments := extract_comments( comments_body )
+		mComments := extract_comments( comments_body )
 
-	movie_body = set_comments( movie_body, mComments )
+		movie_body = set_comments( movie_body, mComments )
+	}
 
 	bytes, err := json.Marshal( movie_body )
 	if err != nil {

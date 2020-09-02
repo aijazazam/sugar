@@ -31,8 +31,49 @@ func init() {
 
 	AddMovie = make( chan sql.MovieMin, 100 )
 	SearchMovies = make( chan SearchMovie, 100 )
+}
 
-	go GoSearchEngine()
+func GoSearchEngine() {
+
+	response := make( chan sql.MovieMin, 100 )
+	cache		 := Cache{ make( map[string] []uint32 ) }
+	db			 := sql.GetDB()
+
+	go db.GoScanMovieName( response )
+
+	for tMovieMin := range response {
+		cache.Add( tMovieMin.Name, tMovieMin.MovieId )
+	}
+
+	dist_0, dist_1, dist_2 := cache.SearchQuery( "Lost" )
+	fmt.Println( dist_0, dist_1, dist_2 )
+
+	fmt.Println("done scanning db")
+
+	for {
+
+		select {
+			case tAdd := <-AddMovie: {
+				cache.Add( tAdd.Name, tAdd.MovieId )
+			}
+
+			case tSearch := <-SearchMovies: {
+
+				fmt.Println("Searching ", tSearch.Query )
+
+				dist_0, dist_1, dist_2 := cache.SearchQuery( tSearch.Query )
+
+				fmt.Println("Searched ", tSearch.Query, dist_0, dist_1, dist_2 )
+
+				tSearch.Edit_distance_0 = dist_0
+				tSearch.Edit_distance_1 = dist_1
+				tSearch.Edit_distance_2 = dist_2
+				tSearch.Response <- tSearch
+			}
+		}
+	}
+
+	fmt.Println("dead GoSearchEngine ..")
 }
 
 func ( cache *Cache ) Add( tName string, tMovieId uint32 ) {
@@ -98,48 +139,5 @@ func ( cache *Cache ) SearchQuery( user_string string ) (distanceZero, distanceO
   }
 
   return
-}
-
-func GoSearchEngine() {
-
-	response := make( chan sql.MovieMin, 100 )
-	cache		 := Cache{ make( map[string] []uint32 ) }
-	db			 := sql.GetDB()
-
-	go db.GoScanMovieName( response )
-
-	for tMovieMin := range response {
-		cache.Add( tMovieMin.Name, tMovieMin.MovieId )
-	}
-
-	dist_0, dist_1, dist_2 := cache.SearchQuery( "Lost" )
-	fmt.Println( dist_0, dist_1, dist_2 )
-
-	fmt.Println("done scanning db")
-
-	for {
-
-		select {
-			case tAdd := <-AddMovie: {
-				cache.Add( tAdd.Name, tAdd.MovieId )
-			}
-
-			case tSearch := <-SearchMovies: {
-
-				fmt.Println("Searching ", tSearch.Query )
-
-				dist_0, dist_1, dist_2 := cache.SearchQuery( tSearch.Query )
-
-				fmt.Println("Searched ", tSearch.Query, dist_0, dist_1, dist_2 )
-
-				tSearch.Edit_distance_0 = dist_0
-				tSearch.Edit_distance_1 = dist_1
-				tSearch.Edit_distance_2 = dist_2
-				tSearch.Response <- tSearch
-			}
-		}
-	}
-
-	fmt.Println("dead GoSearchEngine ..")
 }
 

@@ -55,3 +55,19 @@ func (db *DB) GoScanCredentials( cAuth chan<- com.Credential ) {
 	close(cAuth)
 }
 
+func (db *DB) InsertCredentials( create com.Credential ) {
+
+  if ( len(create.UserName) == 0 ) {
+    panic("Empty UserName")
+  }
+
+  sqldb := db.sqldb
+
+  _, err := sqldb.Query( `REPLACE INTO Authenticate VALUES(?,?,?,?,?);`, create.UserName, create.PasswordHash, create.PasswordSalt, create.IsAdmin, create.IsDisabled )
+	if err != nil {
+		panic( err )
+	}
+
+	return
+}
+

@@ -12,6 +12,10 @@ func comments_backend( movieIds []uint32 ) []byte {
 
   http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{ InsecureSkipVerify: true }
 
+	if len(movieIds) == 0 {
+		return nil
+	}
+
   req, err := http.NewRequest(http.MethodGet,"https://localhost:8003/comment/movie", nil)
   if err != nil {
     panic( err )

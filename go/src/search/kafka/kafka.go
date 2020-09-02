@@ -5,6 +5,8 @@ import (
 	"context"
 	"github.com/segmentio/kafka-go"
 
+	"search/cache"
+
 	com "common"
 	sql "search/db"
 )
@@ -44,6 +46,8 @@ func GoMovieConsumer( tOffset int64 ) {
 		if err := db.InsertMovie( tMovie ); err != nil {
       panic( err )
     }
+
+		cache.AddMovie <- sql.MovieMin{ tMovie.MovieId, tMovie.Name }
 	}
 
 	r.Close()
