@@ -19,7 +19,7 @@ func GetMovieComments(w http.ResponseWriter, r *http.Request) {
     return
 	}
 
-	if len(movieIds[0] == 0 {
+	if len(movieIds[0]) == 0 {
 		return
 	}
 
