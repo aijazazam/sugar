@@ -5,11 +5,13 @@ Required Installations:
 -------------------------
 *. Please go through "IMDB Architecture Doccument.docx" in /docs folder to get complete overview of the architecture.
 1. Please setup the GOPATH and GOBIN folders to this source code folder like in my system its GOPATH is "/home/think/sugar/go" and GOBIN is "/home/think/sugar/go/bin"
-2. Install MariaDB with root password as "sugarbox". The mariaDB backup (imdb.sql) is stored in "data" folder. Please install mariaDB and import "imdb.sql"
+2. Install MariaDB with root password as "sugarbox". Go to "imdb.sql" in data folder and execute below command to import the data:
+   mysql -u root -p < imdb.sql
 3. Install Kafka and create topic TOPIC-MOVIE and TOPIC-AUTHENTICATION, using below script:
    ./bin/zookeeper-server-start.sh ./config/zookeeper.properties
    ./bin/kafka-server-start.sh ./config/server.properties
    ./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic TOPIC-MOVIE
+   ./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic TOPIC-RATING
    ./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic TOPIC-AUTHENTICATION
 
 4. We are using https with TLS (using self signed certificate), so disable the SSL certificate verification in POST MAN.
