@@ -25,3 +25,16 @@ useraction:
 
 clean:
 	rm $$GOBIN/apigateway $$GOBIN/recommendation $$GOBIN/search $$GOBIN/useraction 2> /dev/null
+
+run:
+	apigateway &
+	recommendation &
+	search &
+	useraction &
+
+kill:
+	pkill -9 apigateway 2> /dev/null
+	pkill -9 recommendation 2> /dev/null
+	pkill -9 search 2> /dev/null
+	pkill -9 useraction 2> /dev/null
+
