@@ -7,12 +7,14 @@ Required Installations:
 
 Database Setup:
 ----------------
-Install MariaDB with root password as "sugarbox". Go to "imdb.sql" in data folder and execute below command to import the data:
-		mysql -u root -p < imdb.sql
+1. Install MariaDB with root password as "sugarbox". Refer "https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-ubuntu-18-04"
+2. Go to "imdb.sql" in data folder and execute below command to import the data:
+3. mysql -u root -p < imdb.sql
 
 Kafka Setup:
 -------------
 Install Kafka and create topic TOPIC-MOVIE, TOPIC-RATING and TOPIC-AUTHENTICATION, using below script:
+Refer "https://www.digitalocean.com/community/tutorials/how-to-install-apache-kafka-on-ubuntu-18-04"
 1. ./bin/zookeeper-server-start.sh ./config/zookeeper.properties
 2. ./bin/kafka-server-start.sh ./config/server.properties
 3. ./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic TOPIC-MOVIE
@@ -36,21 +38,21 @@ Environment SetUp
 7. Hit the api's imported on PostMan from "imdb api.postman_collection.json"
 8. to Kill all micro services: do a "make kill" to kill all running micro services.
 9. There are two pre populated users in the database, for https://localhost:8000/login POST request use any one of below in body:
-	{
-		"username": "sugar",
-		"password": "sugarbox"
-	}
-	{
-		"username": "admin",
-		"password": "adminpassword"
-	}
-	If you want to rate/comment or check your useraction then you have to pass the jwt in the "Autherization" Header of your request.
-	You will get jwt after you hit the login api. copy that jwt into "Autherization" Header of your request for below api's
-	https://localhost:8000/useraction
-	https://localhost:8000/add/rate
-	https://localhost:8000/add/comment
-	https://localhost:8000/add/movie  (requires an admin jwt, you get it by logging in as admin credentials above)
-	Please see PostMan examples for above api's usage.
+{
+	"username": "sugar",
+	"password": "sugarbox"
+}
+{
+	"username": "admin",
+	"password": "adminpassword"
+}
+a. If you want to rate/comment or check your useraction then you have to pass the jwt in the "Autherization" Header of your request.
+b. You will get jwt after you hit the login api. copy that jwt into "Autherization" Header of your request for below api's
+c. https://localhost:8000/useraction
+d. https://localhost:8000/add/rate
+e. https://localhost:8000/add/comment
+f. https://localhost:8000/add/movie  (requires an admin jwt, you get it by logging in as admin credentials above)
+g. Please see PostMan examples for above api's usage.
    
 10.Just for information, the movie data is copied from "https://data.world/promptcloud/imdb-data-from-2006-to-2016".
 
