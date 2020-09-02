@@ -17,7 +17,7 @@ Required Installations:
 4. We are using https with TLS (using self signed certificate), so disable the SSL certificate verification in POST MAN.
    In PostMan goto Settings and disable the "SSL certificate verification"
 5. For details how to use api's please see/import the PostMan samples in data folder (imdb api.postman_collection.json).    
-6. cd to src folder and do a "make clean" than do "make all". I have also commited the executables, in case things don't work out (due to dependencies), please pull the executables from git "go/bin" and try running.
+6. cd to src folder and first do "make init" to install all dependencies, then do a "make clean" then do "make all". I have also commited the executables, in case things don't work out (due to dependencies), please pull the executables from git "go/bin" and try running.
 7. Open a new terminal and start "apigateway", again in another terminal start "search", again in another terminal start "recommendation", again in another terminal start "useraction".
 8. Please make sure that following port numbers are unused since the port numbers used by micro services are apigateway(8000), search(8001), recommendation(8002), useraction(8003).
 9. Please make sure that mariaDB and Kafka are running in localhost with default port numbers.

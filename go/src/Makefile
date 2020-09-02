@@ -1,6 +1,14 @@
 
 .PHONY: api search recommend useraction clean
 
+init:
+	go get github.com/dchest/siphash
+	go get github.com/go-sql-driver/mysql
+	go get github.com/tylertreat/BoomFilters
+	go get github.com/dgrijalva/jwt-go
+	go get github.com/segmentio/kafka-go
+	go get github.com/agnivade/levenshtein
+
 all: api search recommend useraction
 
 api:
